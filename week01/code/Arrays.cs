@@ -19,7 +19,6 @@ public static class Arrays
         for (int i = 0; i < length; i++)
         {
             // Step 3: Calculate the multiple and store it in the array
-            // We use (i + 1) because we want the first multiple to be number * 1, not number * 0
             multiples[i] = number * (i + 1);
         }
         
@@ -28,41 +27,36 @@ public static class Arrays
     }
 
     /// <summary>
-    /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
-    /// List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9} and an amount is 3 then the list after the function runs should be 
-    /// List<int>{7, 8, 9, 1, 2, 3, 4, 5, 6}.  The value of amount will be in the range of 1 to data.Count, inclusive.
-    ///
-    /// Because a list is dynamic, this function will modify the existing data list rather than returning a new list.
+    /// Rotate the 'data' to the right by the 'amount'.  
+    /// The value of amount will be in the range of 1 to data.Count, inclusive.
+    /// This function will modify the existing data list rather than returning a new list.
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
         // PLAN for RotateListRight:
-        // 1. Calculate the split point: data.Count - amount (this tells us where to divide the list)
-        // 2. Get the portion from the split point to the end (these elements will move to the front)
-        // 3. Get the portion from the beginning to the split point (these elements will move to the back)
+        // 1. Calculate the split point: data.Count - amount
+        // 2. Get the portion from the split point to the end
+        // 3. Get the portion from the beginning to the split point
         // 4. Clear the original list
-        // 5. Add the end portion first (the elements that were at the end)
-        // 6. Add the beginning portion second (the elements that were at the beginning)
+        // 5. Add the end portion first
+        // 6. Add the beginning portion second
         
         // Step 1: Calculate where to split the list
-        // The rotation amount tells us how many elements from the end should move to the front
         int splitIndex = data.Count - amount;
         
         // Step 2: Get the portion from the split point to the end
-        // These are the elements that will move to the front of the list
         List<int> endPortion = data.GetRange(splitIndex, amount);
         
         // Step 3: Get the portion from the beginning to the split point
-        // These are the elements that will move to the back of the list
         List<int> beginningPortion = data.GetRange(0, splitIndex);
         
-        // Step 4: Clear the original list so we can rebuild it
+        // Step 4: Clear the original list
         data.Clear();
         
-        // Step 5: Add the end portion first (elements that were at the end)
+        // Step 5: Add the end portion first
         data.AddRange(endPortion);
         
-        // Step 6: Add the beginning portion second (elements that were at the beginning)
+        // Step 6: Add the beginning portion second
         data.AddRange(beginningPortion);
     }
 }
