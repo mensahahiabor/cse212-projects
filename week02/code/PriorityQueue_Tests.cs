@@ -2,7 +2,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 // TODO Problem 2 - Write and run test cases and fix the code to match requirements.
-
+// Defect(s) Found: 
+// - Dequeue() method didn't actually remove items from queue (missing _queue.RemoveAt)
+// - For loop had wrong bounds (_queue.Count - 1 instead of _queue.Count)  
+// - Used >= comparison which broke FIFO order for same priorities
+// - Needed > comparison to maintain insertion order for same priorities
 [TestClass]
 public class PriorityQueueTests
 {
